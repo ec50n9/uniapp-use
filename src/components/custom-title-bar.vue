@@ -1,5 +1,5 @@
 <script setup>
-import { getWindowInfo } from "@/share/window-info";
+import { getWindowInfo } from "@/share/utils/window-info";
 
 defineProps({
     extClass: String,
