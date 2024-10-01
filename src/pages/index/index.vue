@@ -1,8 +1,9 @@
 <template>
-    <view class="content">
-        <image class="logo" src="/static/logo.png"></image>
-        <view class="text-area">
-            <text class="title">{{ title }}</text>
+    <view un-flex="~ col" justify-center items-center>
+        <image un-size-10 src="/static/logo.png" />
+        <view bg-red>
+            <text>{{ title }}</text>
+            <view i-carbon:close />
         </view>
     </view>
 </template>
