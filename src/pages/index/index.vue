@@ -1,10 +1,8 @@
 <script setup>
 import { ref } from "vue";
-import { getWindowInfo } from "@/share/window-info";
 import CustomTitleBar from "@/components/custom-title-bar.vue";
 
 const title = ref("你好，世界");
-const { statusBarHeight, titleBarHeight, menuButtonRect } = getWindowInfo();
 </script>
 
 <template>

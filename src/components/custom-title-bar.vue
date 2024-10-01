@@ -28,7 +28,11 @@ const menuButtonCenter = {
         <view class="of-hidden" :style="{ height: `${titleBarHeight}px` }">
             <view
                 class="h-full"
-                :style="{ width: `${menuButtonRect.left}px` }"
+                :style="{
+                    width: menuButtonRect.width
+                        ? `${menuButtonRect.left}px`
+                        : '100%',
+                }"
                 :class="[titleContentClass]"
             >
                 <slot />
