@@ -1,12 +1,14 @@
 import { ref } from "vue";
 
 // TODO: 基础 url
-const BASE_URL = "";
+const BASE_URL = "https://yesjgiamuvmz.bja.sealos.run/api/v1";
 // TODO: 成功的响应码
-const SUCCESS_CODE = 1;
+const SUCCESS_CODE = 0;
 
 // TODO: 当响应码不正确时，检查状态码
 const checkResAndThrow = (data) => {
+  if (data?.code === undefined) throw new Error("响应码为空");
+
   // 跳转登录页面
   if (data.code === 401) toLogin();
   throw new Error(data.msg);
@@ -19,12 +21,13 @@ const getToken = () => {};
 const toLogin = () => {};
 
 export const useRequest = (option = {}) => {
-  const { defaultData } = option;
-  const _data = ref(defaultData);
+  const { defaultValue } = option;
+  console.log('fucking:', defaultValue)
+  const _data = ref(defaultValue);
   const loading = ref(false);
   const error = ref(null);
 
-  const fetch = (newOption = {}) => {
+  const fetch = async (newOption = {}) => {
     const {
       baseUrl = BASE_URL,
       url,

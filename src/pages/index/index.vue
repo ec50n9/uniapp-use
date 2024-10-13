@@ -2,11 +2,28 @@
 import { ref } from "vue";
 import { useRequest } from "@/share/hooks/use-request";
 import CustomTitleBar from "@/components/custom-title-bar.vue";
+import { onLoad } from "@dcloudio/uni-app";
 
 const title = ref("你好，世界");
-const { data, fetch, loading } = useRequest({
-  url: "/api/index",
+const { data, loading, error, fetch } = useRequest({
+  url: "/demo/hello",
   defaultValue: [],
+  needToken: false,
+});
+
+const createPostReq = useRequest({
+  url: "/demo/posts",
+  method: "POST",
+  defaultValue: [],
+  needToken: false,
+  data: {
+    title: "测试标题",
+    content: "测试内容",
+  },
+});
+
+onLoad(() => {
+  console.log("on index page load");
 });
 </script>
 
@@ -24,6 +41,16 @@ const { data, fetch, loading } = useRequest({
     <view>
       <text>{{ title }}</text>
       <view i-carbon:close />
+      <button
+        :disabled="createPostReq.loading.value"
+        :loading="createPostReq.loading.value"
+        hover-class="button-hover"
+        @click="createPostReq.fetch"
+      >
+        请求
+      </button>
+      <view>数据：{{ createPostReq.data }}</view>
+      <view>错误：{{ createPostReq.error }}</view>
     </view>
   </view>
 </template>

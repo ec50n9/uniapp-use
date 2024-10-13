@@ -1,6 +1,8 @@
+import { Ref } from "vue";
+
 declare module "@/share/hooks/use-request" {
   export type BaseRequestOptions<T> = {
-    defaultValue: T;
+    defaultValue?: T;
   };
 
   export type RequestOptions<T> = {
@@ -19,10 +21,10 @@ declare module "@/share/hooks/use-request" {
   };
 
   export interface RequestResult<T> {
-    data: T;
-    loading: boolean;
-    fetch: (options: RequestOptions<T>) => Promise<T>;
-    error: any;
+    data: Ref<T>;
+    loading: Ref<boolean>;
+    fetch: (options?: RequestOptions<T>) => Promise<T>;
+    error: Ref<any>;
   }
 
   export function useRequest<T = any>(
